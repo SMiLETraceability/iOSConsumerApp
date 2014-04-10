@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <BALResponseHandler>
 
+@property(nonatomic,weak) IBOutlet UITextField *emailTxtField;
+@property(nonatomic,weak) IBOutlet UITextField *passTxtField;
+
+-(IBAction)login:(id)sender;
 @end

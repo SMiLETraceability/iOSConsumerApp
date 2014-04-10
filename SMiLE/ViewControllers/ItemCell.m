@@ -9,6 +9,7 @@
 #import "ItemCell.h"
 
 @implementation ItemCell
+@synthesize titleLabel,itemImage,product,item;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -17,6 +18,22 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)setupWithDictionary:(NSDictionary *)dictionary
+{
+    product = [dictionary objectForKey:@"product"];
+    item = [dictionary objectForKey:@"item"];
+    
+    [titleLabel setText:product.title];
+    [self setImageFromURL];
+    
+    //self.titleLabel.text = [dictionary valueForKey:@"location"];
+}
+
+-(void)setImageFromURL{
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:product.imageURL]];
+    itemImage.image = [UIImage imageWithData:imageData];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

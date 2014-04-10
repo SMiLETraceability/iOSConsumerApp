@@ -10,17 +10,14 @@
 @implementation WKPagesCollectionView
 @dynamic maskShow;
 -(id)initWithPagesFlowLayoutAndFrame:(CGRect)frame{
-    WKPagesCollectionViewFlowLayout* flowLayout=[[[WKPagesCollectionViewFlowLayout alloc]init] autorelease];
+    WKPagesCollectionViewFlowLayout* flowLayout=[[WKPagesCollectionViewFlowLayout alloc]init];
     self=[super initWithFrame:frame collectionViewLayout:flowLayout];
     if (self){
         self.contentInset=UIEdgeInsetsMake(-100.0f, 0.0f, 0.0f, 0.0f);
     }
     return self;
 }
--(void)dealloc{
-    [_maskImageView release];
-    [super dealloc];
-}
+
 #pragma mark - Mask
 -(void)setMaskShow:(BOOL)maskShow{
     _maskShow=maskShow;

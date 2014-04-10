@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecipeMainCell : UIView
+@interface RecipeCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIImageView *mainImage;
+@property (weak,nonatomic) IBOutlet UIWebView *videoView;
+
+
+- (void)setup;
 
 @end

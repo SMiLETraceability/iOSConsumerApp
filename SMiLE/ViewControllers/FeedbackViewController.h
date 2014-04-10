@@ -10,4 +10,5 @@
 
 @interface FeedbackViewController : UIViewController
 
+@property(nonatomic,weak) IBOutlet UITextView *commentBox;
 @end

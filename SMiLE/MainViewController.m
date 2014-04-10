@@ -7,16 +7,24 @@
 //
 
 #import "MainViewController.h"
+#import "HTTPManager.h"
+#import "GalleryViewController.h"
 
 @interface MainViewController ()
 
 @end
 
 @implementation MainViewController
-
+@synthesize loginBtn, logoutBtn;
 - (void)viewDidLoad
 {
+    NSLog(@"ready");
+    
+    //[SMiLEUtility saveUserAPIKey:API_TOKEN];
+
     [super viewDidLoad];
+    
+    //[self setLoginLogoutBtn];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -26,18 +34,43 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Flipside View
+-(void)setLoginLogoutBtn{
+    
+    if([SMiLEUtility getUserAPIKey]){
+      //  [logoutBtn setHidden:TRUE];
+//        [loginBtn setHidden:FALSE];
+        [loginBtn setEnabled:FALSE];
+    }
+    else{
+        //[loginBtn setHidden:TRUE];
+       // [logoutBtn setHidden:FALSE];
 
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showAlternate"]) {
         [[segue destinationViewController] setDelegate:self];
     }
+    
+    if ([[segue identifier] isEqualToString:@"PushGalleryView"]) {
+        
+        // [[segue destinationViewController] setDelegate:self];
+    }}
+
+-(IBAction)btnTapped:(id)sender{
+    NSLog(@"I'm a Button!");
 }
 
+-(IBAction)scanBtnTapped:(id)sender{
+    
+}
+-(IBAction)galleryBtnTapped:(id)sender{
+    NSLog(@"%s",__func__);
+   // [self performSegueWithIdentifer:@"PushGalleryView" sender:self];
+}
+
+-(IBAction)logoutBtnTapped:(id)sender{
+    NSLog(@"I'm a Button!");
+}
 @end

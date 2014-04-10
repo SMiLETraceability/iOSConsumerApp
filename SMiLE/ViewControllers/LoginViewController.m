@@ -13,7 +13,7 @@
 @end
 
 @implementation LoginViewController
-
+@synthesize emailTxtField,passTxtField;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,4 +35,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)login:(id)sender{
+
+    [[BAL sharedInstance] setResponseHandler:self];
+    [[BAL sharedInstance] loginUser:emailTxtField.text withPassword:passTxtField.text];
+}
+
+-(void)BALResponse:(NSMutableDictionary *)response withSuccess:(BOOL)isSuccess{
+    [[BAL sharedInstance] setResponseHandler:nil];
+
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
 @end

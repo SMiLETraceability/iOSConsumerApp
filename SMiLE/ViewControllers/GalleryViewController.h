@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GalleryViewController : UIViewController
+@interface GalleryViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,BALResponseHandler>
 
+@property(nonatomic,weak) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property(nonatomic,weak) IBOutlet UITableView *tableView;
+@property(nonatomic,strong) NSMutableArray *productsArray;
 @end

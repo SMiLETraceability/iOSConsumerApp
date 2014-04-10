@@ -1,4 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Activity" representedClassName="Activity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toIngredient" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="toActivity" inverseEntity="Ingredient" syncable="YES"/>
+        <relationship name="toLocation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="toProperty" inverseEntity="Location" syncable="YES"/>
+        <relationship name="toProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="toActivity" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Address" representedClassName="Address" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="toAddress" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Ingredient" representedClassName="Ingredient" syncable="YES">
+        <attribute name="activityID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="producer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toActivity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="toIngredient" inverseEntity="Activity" syncable="YES"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="toItem" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toProperty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="toLocation" inverseEntity="Activity" syncable="YES"/>
+    </entity>
+    <entity name="Media" syncable="YES">
+        <attribute name="mediaURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toActivity" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Activity" inverseName="toProduct" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="toItem" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Item" inverseName="toProduct" inverseEntity="Item" syncable="YES"/>
+        <relationship name="toUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="toProduct" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="apiKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toAddress" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Address" inverseName="toUser" inverseEntity="Address" syncable="YES"/>
+        <relationship name="toProduct" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="toUser" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Activity" positionX="432" positionY="245" width="128" height="118"/>
+        <element name="Address" positionX="-425" positionY="153" width="128" height="103"/>
+        <element name="Ingredient" positionX="628" positionY="504" width="128" height="163"/>
+        <element name="Item" positionX="-36" positionY="207" width="128" height="88"/>
+        <element name="Location" positionX="169" positionY="389" width="128" height="88"/>
+        <element name="Media" positionX="-54" positionY="407" width="128" height="73"/>
+        <element name="Product" positionX="268" positionY="-0" width="128" height="178"/>
+        <element name="User" positionX="-155" positionY="-10" width="128" height="163"/>
+    </elements>
 </model>
