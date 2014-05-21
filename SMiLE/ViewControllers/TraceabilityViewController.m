@@ -1,4 +1,4 @@
-//
+ //
 //  TraceabilityViewControllerCard.m
 //  SMiLE
 //
@@ -17,6 +17,11 @@
 @synthesize myTableView;
 @synthesize members;
 @synthesize product;
+@synthesize production;
+@synthesize recipe;
+@synthesize business;
+
+#define NUMBER_OF_OTHER_CELLS = 3; //other cells apart from ingredients, usually business info, production info and the recipe
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,13 +66,22 @@
     [[BAL sharedInstance] setParentObj:nil];
     
     if(isSuccess){
-        recipesArr = [NSMutableArray arrayWithArray:[product.toActivity allObjects]];
+        activitiesArr = [NSMutableArray arrayWithArray:[product.toActivity allObjects]];
         //filter only for recipes
     
-        NSLog(@"recipes >>>>>>>>>>>>>>>\n %@",recipesArr);
+       // NSLog(@"recipes >>>>>>>>>>>>>>>\n %@",activitiesArr);
     
-        [recipesArr filterUsingPredicate:[NSPredicate predicateWithFormat:@"type LIKE[cd] 'RECIPE'"]];
-    
+        recipe = [[[[[activitiesArr filteredArrayUsingPredicate:
+                          [NSPredicate predicateWithFormat:@"type LIKE[cd] 'RECIPE'"]] objectAtIndex:0] toRecipe] allObjects] objectAtIndex:0];
+        
+        production = [[[[[activitiesArr filteredArrayUsingPredicate:
+[NSPredicate predicateWithFormat:@"type LIKE[cd] 'PRODUCTION'"]] objectAtIndex:0] toProductProduction] allObjects] objectAtIndex:0];
+
+        ingredientsArr = [activitiesArr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"type LIKE[cd] 'INGREDIENT'"]];
+
+        
+        //NSLog(@"production id >>>>>>>>>>>>>>>\n %@",production.activityID);
+        
         [myTableView reloadData];
         [self.myTableView setUserInteractionEnabled:TRUE];
     }
@@ -90,7 +104,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [recipesArr count]+2;
+    return [ingredientsArr count]+3;
+//    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -135,19 +150,40 @@
         switch (indexPath.row) {
             case 0: //set Business Info
             {
-                static NSString *CellIdentifier = @"CardCell";
+                static NSString *CellIdentifier = @"BusinessInfoCell";
                 
-                CardCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellIdentifier]; //forIndexPath:indexPath];
-                if (!cell) {
-                    cell = [[CardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                BusinessInfoCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellIdentifier]; //forIndexPath:indexPath];
+                if (cell == nil) {
+                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"BusinessInfoCell" owner:self options:nil];
+                    //cell = [[BusinessInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
                     // More initializations if needed.
+                    cell = [topLevelObjects objectAtIndex:0];
                 }
                 
-                [cell setupBusinessCell:nil];
+                [cell setupBusinessCell:business];
                 return cell;
                 //break;
             }
+                
             case 1:
+            {
+                static NSString *CellIdentifier = @"ProductProductionCell";
+                
+                ProductProductionCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    // Load the top-level objects from the custom cell XIB.
+                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProductProductionCell" owner:self options:nil];
+                    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+                    cell = [topLevelObjects objectAtIndex:0];
+                }
+                
+                [cell setupCell:production];
+                return cell;
+                
+                //            break;
+            }
+                
+            case 2:
             {
                 static NSString *CellIdentifier = @"RecipeCell";
                 
@@ -159,29 +195,10 @@
                     cell = [topLevelObjects objectAtIndex:0];
                 }
                 
-                [cell setup];
+                [cell setupWithRecipe:recipe];
                 return cell;
                 
                 //            break;
-            }
-                
-            case 2:{
-                static NSString *CellIdentifier = @"IngredientCell";
-                
-                IngredientCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellIdentifier]; //forIndexPath:indexPath];
-                
-                if (cell == nil) {
-                    // Load the top-level objects from the custom cell XIB.
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"IngredientCell" owner:self options:nil];
-                    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                
-                
-                [cell setupCell:[recipesArr objectAtIndex:0]];
-                return cell;
-                
-                // break;
             }
                 
             case 3:{
@@ -197,7 +214,26 @@
                 }
                 
                 
-                [cell setupCell:[recipesArr objectAtIndex:1]];
+                [cell setupCell:[ingredientsArr objectAtIndex:0]];
+                return cell;
+                
+                // break;
+            }
+                
+            case 4:{
+                static NSString *CellIdentifier = @"IngredientCell";
+                
+                IngredientCell *cell = [myTableView dequeueReusableCellWithIdentifier:CellIdentifier]; //forIndexPath:indexPath];
+                
+                if (cell == nil) {
+                    // Load the top-level objects from the custom cell XIB.
+                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"IngredientCell" owner:self options:nil];
+                    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+                    cell = [topLevelObjects objectAtIndex:0];
+                }
+                
+                
+                [cell setupCell:[ingredientsArr objectAtIndex:1]];
                 return cell;
                 
                 // break;

@@ -192,6 +192,34 @@ static NSString *initials = @"SMiLE";
 	}
 }
 
+-(Business*)saveBusiness:(NSDictionary*)businessDict{
+	
+	Business *business = nil;
+    
+	@try {
+		business = [self fetchBusinessWithID:[businessDict objectForKey:JSON_BUSINESS_ID_KEY]];
+		if(!business) {
+			business = (Business*)[NSEntityDescription insertNewObjectForEntityForName:ENTITY_BUSINESS_KEY inManagedObjectContext:self.managedObjectContext];
+			//[user setId:[[userDict objectForKey:JSON_USER_ID_KEY] stringValue]];
+            [business setBusinessID:[[businessDict objectForKey:JSON_BUSINESS_ID_KEY] stringValue]];
+		}
+        [business setImage:[[businessDict objectForKey:JSON_BUSINESS_IMAGE_KEY] objectAtIndex:0]];
+        [business setTitle:[businessDict objectForKey:JSON_BUSINESS_TITLE_KEY]];
+        [business setBusinessDescription:[businessDict objectForKey:JSON_BUSINESS_DESCRIPTION_KEY]];
+        [business setTelephone:[businessDict objectForKey:JSON_BUSINESS_TELEPHONE_KEY]];
+        //[user setApiKey:[[userDict objectForKey:JSON_USER_API_KEY] stringValue]];
+        // [user setStatus:[[userDict objectForKey:JSON_USER_STATUS_KEY] stringValue]];
+        
+        
+	}
+	@catch (NSException * e) {
+		NSLog(@"%s %@",__func__, [e description]);
+	}
+	@finally {
+		return business;
+	}
+}
+
 -(Activity*)saveActivity:(NSDictionary*)activityDict forProduct:(Product*)product{
 	
 	Activity *activity = nil;
@@ -205,12 +233,35 @@ static NSString *initials = @"SMiLE";
             
 
 		}
-        
+
+        //case product production
+ 
+        if([activity.type isEqualToString:@"PRODUCTION"]){
+            ProductProduction *production = [self saveProductProduction:[activityDict objectForKey:JSON_ACTIVITY_CONTEXT_KEY] forActivity:activity.id];
+            
+            [activity addToProductProductionObject:production];
+            [production setToActivity:activity];
+        }
+
         //case recipe
-        Ingredient *ingredient = [self saveIngredient:[activityDict objectForKey:JSON_INGREDIENT_CONTEXT_KEY] forActivity:activity.id];
+        if([activity.type isEqualToString:@"RECIPE"]){
+            Recipe *recipe = [self saveRecipe:[activityDict objectForKey:JSON_ACTIVITY_CONTEXT_KEY] forActivity:activity.id];
+            
+            [activity addToRecipeObject:recipe];
+            [recipe setToActivity:activity];
+        }
+
         
-        [activity addToIngredientObject:ingredient];
-        [ingredient setToActivity:activity];
+        //case ingredient
+        if([activity.type isEqualToString:@"INGREDIENT"]){
+            Ingredient *ingredient = [self saveIngredient:[activityDict objectForKey:JSON_ACTIVITY_CONTEXT_KEY] forActivity:activity.id];
+        
+            [activity addToIngredientObject:ingredient];
+            [ingredient setToActivity:activity];
+ 
+        }
+    
+        //save relation between product and activity
         
         [product addToActivityObject:activity];
         [activity setToProduct:product];
@@ -233,7 +284,9 @@ static NSString *initials = @"SMiLE";
 
         if(!ingredient){
             ingredient = (Ingredient*)[NSEntityDescription insertNewObjectForEntityForName:ENTITY_INGREDIENT_KEY inManagedObjectContext:self.managedObjectContext];
+            [ingredient setActivityID:activityID];
         }
+        
         [ingredient setTitle:[ingredientDict objectForKey:JSON_INGREDIENT_TITLE_KEY]];
         [ingredient setProducer:[ingredientDict objectForKey:JSON_INGREDIENT_PRODUCER_KEY]];
         [ingredient setImageURL:[ingredientDict objectForKey:JSON_INGREDIENT_IMAGE_KEY]];
@@ -245,6 +298,52 @@ static NSString *initials = @"SMiLE";
 	}
 	@finally {
 		return ingredient;
+	}
+}
+
+-(Recipe*)saveRecipe:(NSDictionary*)recipeDict forActivity:(NSString*)activityID{
+	
+	Recipe *recipe = nil;
+    
+	@try {
+        recipe = [self fetchRecipeWithID:activityID];
+        
+        if(!recipe){
+            recipe = (Recipe*)[NSEntityDescription insertNewObjectForEntityForName:ENTITY_RECIPE_KEY inManagedObjectContext:self.managedObjectContext];
+            [recipe setActivityID:activityID];
+
+        }
+        [recipe setImage:[recipeDict objectForKey:JSON_RECIPE_IMAGE_KEY]];
+        [recipe setVideo:[recipeDict objectForKey:JSON_RECIPE_VIDEO_KEY]];
+        [recipe setDesc:[recipeDict objectForKey:JSON_RECIPE_DESCRIPTION_KEY]];
+	}
+	@catch (NSException * e) {
+		NSLog(@"%s %@",__func__, [e description]);
+	}
+	@finally {
+		return recipe;
+	}
+}
+
+-(ProductProduction*)saveProductProduction:(NSDictionary*)productionDict forActivity:(NSString*)activityID{
+	
+	ProductProduction *production = nil;
+    
+	@try {
+        production = [self fetchProductProductionWithID:activityID];
+        
+        if(!production){
+            production = (ProductProduction*)[NSEntityDescription insertNewObjectForEntityForName:ENTITY_PRODUCT_PRODUCTION_KEY inManagedObjectContext:self.managedObjectContext];
+            [production setActivityID:activityID];
+        }
+        [production setVideo:[productionDict objectForKey:JSON_PRODUCTION_VIDEO_KEY]];
+        [production setDesc:[productionDict objectForKey:JSON_PRODUCTION_DESCRIPTION_KEY]];
+	}
+	@catch (NSException * e) {
+		NSLog(@"%s %@",__func__, [e description]);
+	}
+	@finally {
+		return production;
 	}
 }
 
@@ -302,6 +401,32 @@ static NSString *initials = @"SMiLE";
 	
 }
 
+-(Business*)fetchBusinessWithID:(NSString*)businessID{
+	
+	NSArray *fetchRecords = nil;
+	Business *business = nil;
+	
+	@try {
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", ATTRIBUTE_BUSINESS_ID_KEY, businessID];
+		
+		fetchRecords = [self fetchRecords:ENTITY_BUSINESS_KEY
+							withPredicate:predicate
+						  withFetchOffset:0
+						   withFetchLimit:1
+								   sortBy:ATTRIBUTE_BUSINESS_ID_KEY
+								assending:YES];
+		if([fetchRecords count])
+			business = [fetchRecords objectAtIndex:0];
+	}
+	@catch (NSException * e) {
+		NSLog(@"%s %@",__func__, [e description]);
+	}
+	@finally {
+		return business;
+	}
+	
+}
+
 -(Activity*)fetchActivityWithID:(NSString*)activityID{
 	
 	NSArray *fetchRecords = nil;
@@ -350,6 +475,58 @@ static NSString *initials = @"SMiLE";
 	}
 	@finally {
 		return ingredient;
+	}
+	
+}
+
+-(Recipe*)fetchRecipeWithID:(NSString*)activityID{
+	
+	NSArray *fetchRecords = nil;
+	Recipe *recipe = nil;
+	
+	@try {
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", ATTRIBUTE_RECIPE_ID_KEY, activityID];
+		
+		fetchRecords = [self fetchRecords:ENTITY_RECIPE_KEY
+							withPredicate:predicate
+						  withFetchOffset:0
+						   withFetchLimit:1
+								   sortBy:ATTRIBUTE_RECIPE_ID_KEY
+								assending:YES];
+		if([fetchRecords count])
+			recipe = [fetchRecords objectAtIndex:0];
+	}
+	@catch (NSException * e) {
+		NSLog(@"%s %@",__func__, [e description]);
+	}
+	@finally {
+		return recipe;
+	}
+	
+}
+
+-(ProductProduction*)fetchProductProductionWithID:(NSString*)activityID{
+	
+	NSArray *fetchRecords = nil;
+	ProductProduction *production = nil;
+	
+	@try {
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", ATTRIBUTE_PRODUCT_PRODUCTION_ID_KEY, activityID];
+		
+		fetchRecords = [self fetchRecords:ENTITY_PRODUCT_PRODUCTION_KEY
+							withPredicate:predicate
+						  withFetchOffset:0
+						   withFetchLimit:1
+								   sortBy:ATTRIBUTE_PRODUCT_PRODUCTION_ID_KEY
+								assending:YES];
+		if([fetchRecords count])
+			production = [fetchRecords objectAtIndex:0];
+	}
+	@catch (NSException * e) {
+		NSLog(@"%s %@",__func__, [e description]);
+	}
+	@finally {
+		return production;
 	}
 	
 }

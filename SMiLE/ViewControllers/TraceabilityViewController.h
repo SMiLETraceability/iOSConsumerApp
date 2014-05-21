@@ -7,16 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CardCell.h"
+#import "BusinessInfoCell.h"
+#import "ProductProductionCell.h"
 #import "RecipeCell.h"
 #import "IngredientCell.h"
 
 @interface TraceabilityViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,BALResponseHandler>{
     Activity *businessInfo;
-    NSMutableArray *recipesArr;
-    NSMutableArray *recipesArr2;
+    NSMutableArray *activitiesArr;
+    NSArray *ingredientsArr;
 }
 
 @property(weak,nonatomic) IBOutlet UITableView *myTableView;
 @property(nonatomic,strong) Product *product;
+@property(nonatomic,strong) ProductProduction *production;
+@property(nonatomic,strong) Recipe *recipe;
+@property(nonatomic,strong) Business *business;
+
 @end

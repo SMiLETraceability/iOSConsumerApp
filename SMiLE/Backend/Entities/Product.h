@@ -2,7 +2,7 @@
 //  Product.h
 //  SMiLE
 //
-//  Created by Mujtaba Mehdi on 12/03/2014.
+//  Created by Mujtaba Mehdi on 08/05/2014.
 //  Copyright (c) 2014 Dot Rural. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSSet *toActivity;
 @property (nonatomic, retain) NSSet *toItem;
 @property (nonatomic, retain) User *toUser;
+@property (nonatomic, retain) NSManagedObject *toBusiness;
 @end
 
 @interface Product (CoreDataGeneratedAccessors)

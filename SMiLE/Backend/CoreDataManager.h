@@ -16,6 +16,9 @@
 #import "User.h"
 #import "Activity.h"
 #import "Ingredient.h"
+#import "Recipe.h"
+#import "ProductProduction.h"
+#import "Business.h"
 
 @interface CoreDataManager : NSObject{
     NSManagedObjectContext *managedObjectContext;
@@ -32,10 +35,12 @@
 -(Product*)saveProduct:(NSDictionary*)productDict;
 -(Item*)saveItem:(NSDictionary*)itemDict;
 -(User*)saveUser:(NSDictionary*)userDict;
+-(Business*)saveBusiness:(NSDictionary*)businessDict;
 -(Activity*)saveActivity:(NSDictionary*)activityDict forProduct:(Product*)product;
 -(NSArray*)fetchProducts;
 -(Product*)fetchProductWithID:(NSString*)productID;
 -(Item*)fetchItemWithID:(NSString*)itemID;
+-(Business*)fetchBusinessWithID:(NSString*)businessID;
 
 -(void)saveItemProductRelation:(Product*)product withItem:(Item*)item;
 

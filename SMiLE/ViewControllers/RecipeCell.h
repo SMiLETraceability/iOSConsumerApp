@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *mainImage;
 @property (weak,nonatomic) IBOutlet UIWebView *videoView;
 
+@property (weak,nonatomic) IBOutlet UITextView *recipeDescription;
 
-- (void)setup;
+- (void)setupWithRecipe:(Recipe*)recipe;
 
 @end

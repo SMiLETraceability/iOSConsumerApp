@@ -18,7 +18,8 @@ enum callType
     products, // == 0
     items, // == 1
     login, // == 2
-    activity // ==3
+    activity, // ==3
+    business //4
 };
 
 
@@ -48,4 +49,5 @@ enum callType
 -(void)fetchItemWithID:(NSString*)itemID;
 -(void)fetchProductWithID:(NSString*)productID;
 -(void)fetchActivityForProduct:(NSString*)productID;
+-(void)fetchBusinessWithID:(NSString*)businessID;
 @end

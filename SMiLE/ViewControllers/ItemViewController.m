@@ -22,8 +22,10 @@
 @synthesize itemDescription;
 @synthesize item;
 @synthesize product;
+@synthesize business;
 @synthesize itemID;
 @synthesize productID;
+@synthesize businessID;
 @synthesize itemTextViewDesc;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,6 +42,8 @@
     [super viewDidLoad];
     
     [self loadData];
+    isCallBusiness = NO;
+
 	// Do any additional setup after loading the view.
 }
 
@@ -48,7 +52,7 @@
     [self.loadingSpinner setCenter:self.view.center];
     [self.loadingSpinner startAnimating];
     
-    //itemID = @"9";
+    //itemID = @"1010";
     
     [self prepareItemFetch];
     [[BAL sharedInstance] setResponseHandler:self];
@@ -60,17 +64,31 @@
 }
 
 -(void)BALResponse:(NSDictionary *)response withSuccess:(BOOL)isSuccess{
-    [[BAL sharedInstance] setResponseHandler:nil];
-    [loadingSpinner stopAnimating];
-    [loadingSpinner setHidden:YES];
-
-    if(isSuccess){
+    if(!isCallBusiness && isSuccess){
         productID =[[response objectForKey:@"product"] objectForKey:@"id"];
         [[CoreDataManager sharedInstance] saveProduct:[response objectForKey:@"product"]];
         [[CoreDataManager sharedInstance] saveContext];
     
         product =[[CoreDataManager sharedInstance] fetchProductWithID:productID];
         item = [[CoreDataManager sharedInstance] fetchItemWithID:itemID];
+    
+        //    [self setUIData];
+        isCallBusiness = YES; // next call for business
+        
+        //todo remove confusion of business ID in JSON response
+        businessID = [[response objectForKey:@"product"] objectForKey:@"businessId"];
+        [[BAL sharedInstance] fetchBusinessWithID:businessID];
+    }
+    else{
+        
+        isCallBusiness = NO;
+        business = [[CoreDataManager sharedInstance] fetchBusinessWithID:businessID];
+        
+        //end the call
+        [[BAL sharedInstance] setResponseHandler:nil];
+        [loadingSpinner stopAnimating];
+        [loadingSpinner setHidden:YES];
+        
         [self setUIData];
     }
 
@@ -79,8 +97,9 @@
 -(void)setUIData{
     @try {
         //set image
-        NSString *imageURL = [product.imageURL substringToIndex:[product.imageURL length]-1];
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]];
+//        NSString *imageURL = [product.imageURL substringToIndex:[product.imageURL length]-1];
+
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:product.imageURL]];
         itemImage.image = [UIImage imageWithData:imageData];
     }
     @catch (NSException *exception) {
@@ -92,7 +111,7 @@
     [itemTextViewDesc setText:product.shortDesc];
     
 //   [producerTitle setText:product.toUser];
-     [producerTitle setText:@"Berry Scrumptious, UK"];
+     [producerTitle setText:business.title];
 
 }
 
@@ -105,6 +124,7 @@
         TraceabilityViewController *traceView = [[TraceabilityViewController alloc] init];
         traceView = [segue destinationViewController];
         [traceView setProduct:product];
+        [traceView setBusiness:business];
     }
 }
 

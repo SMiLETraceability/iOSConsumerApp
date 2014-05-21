@@ -69,6 +69,14 @@ static BAL *balManager = nil;
     [self doGet:httpString withHeaders:headers];
 }
 
+-(void)fetchBusinessWithID:(NSString*)businessID{
+    NSString *httpString = [NSString stringWithFormat:@"%@%@/%@", API_BASE_URL,API_BUSINESS_URL,businessID];
+    NSDictionary *headers = [NSDictionary dictionaryWithObjectsAndKeys:API_TOKEN,API_TOKEN_KEY,nil];
+    
+    httpCall = business;
+    [self doGet:httpString withHeaders:headers];
+}
+
 -(void)fetchActivityWithID:(NSString*)activityID{
     
 }
@@ -169,6 +177,15 @@ static BAL *balManager = nil;
             [responseHandler BALResponse:response withSuccess:YES];
             break;
         }
+        case business:{
+            NSLog(@"%s %@",__func__, response);
+            [[CoreDataManager sharedInstance] saveBusiness:response];
+            [[CoreDataManager sharedInstance]saveContext];
+            
+            [responseHandler BALResponse:response withSuccess:YES];
+            break;
+        }
+            
         default:
             break;
     }

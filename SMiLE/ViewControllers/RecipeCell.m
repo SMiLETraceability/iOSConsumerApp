@@ -14,7 +14,9 @@
 @end
 
 @implementation RecipeCell
+@synthesize mainImage;
 @synthesize videoView;
+@synthesize recipeDescription;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,7 +31,7 @@
     [self setBackgroundColor:[UIColor clearColor]];
 }
 
-- (void)setup
+- (void)setupWithRecipe:(Recipe*)recipe
 {
     self.mainView.layer.cornerRadius = 10;
     self.mainView.layer.masksToBounds = YES;
@@ -58,10 +60,22 @@
     self.videoView.backgroundColor = [UIColor blackColor];
     */
     
-    NSString *embedCode = @"<iframe width=\"265\" height=\"140\" src=\"http://www.youtube.com/embed/dfRE4V27qMM?rel=0\" frameborder=\"0\" allowfullscreen></iframe>";
-    [[self videoView] loadHTMLString:embedCode baseURL:nil];
+    
+    //NSString *embedCode = [NSString stringWithFormat:@"%@%@%@",@"<iframe width=\"265\" height=\"140\" src=\"",recipe.video,@"?rel=0\"frameborder=\"0\" allowfullscreen></iframe>"];
+    
+    [self.recipeDescription setText:recipe.desc];
+    [self getImage:recipe];
+    //[[self videoView] loadHTMLString:embedCode baseURL:nil]
+    
+    videoView.scrollView.scrollEnabled = false;
+    videoView.scrollView.bounces = false;
 }
 
+-(void)getImage:(Recipe*)recipe{
+    NSLog(@"1111111111 image url = %@",recipe.image);
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:recipe.image]];
+    [self.mainImage setImage:[UIImage imageWithData:imageData]];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
