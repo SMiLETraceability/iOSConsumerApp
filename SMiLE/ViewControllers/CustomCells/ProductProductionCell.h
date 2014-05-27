@@ -16,5 +16,5 @@
 
 @property (weak,nonatomic) IBOutlet UITextView *productionDescription;
 
-- (void)setupCell:(ProductProduction*)production;
+- (void)setupCell:(Activity*)activity;
 @end

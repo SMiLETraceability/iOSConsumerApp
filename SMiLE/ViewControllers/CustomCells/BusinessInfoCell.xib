@@ -86,10 +86,10 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.28999999999999998" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dF3-HI-fdL">
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LFQ-qJ-juM">
                                         <rect key="frame" x="143" y="197" width="144" height="94"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </mapView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -102,7 +102,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="6YV-p9-25Z" id="42y-50-4Ry"/>
-                <outlet property="farmLocation" destination="dF3-HI-fdL" id="y5z-9y-5PD"/>
+                <outlet property="farmLocation" destination="LFQ-qJ-juM" id="4Dt-9w-sAa"/>
                 <outlet property="mainImage" destination="Nxf-EL-0UQ" id="ug4-zd-yeJ"/>
                 <outlet property="mainTitleLabel" destination="5j5-UE-YLa" id="lMA-yb-DKs"/>
                 <outlet property="mainView" destination="iOp-ig-B8z" id="Fs5-bi-Xyd"/>

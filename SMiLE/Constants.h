@@ -11,6 +11,8 @@
 extern NSString *const API_TOKEN;
 //extern NSString *const APP_API_TOKEN;
 extern NSString *const API_BASE_URL;
+extern NSString *const ITEM_WEB_URL;
+
 extern NSString *const API_PRODUCTS_URL;
 extern NSString *const API_BUSINESS_URL;
 extern NSString *const API_ACTIVITY_URL;
@@ -46,6 +48,7 @@ extern NSString *const JSON_BUSINESS_TITLE_KEY;
 extern NSString *const JSON_BUSINESS_ID_KEY;
 extern NSString *const JSON_BUSINESS_IMAGE_KEY;
 extern NSString *const JSON_BUSINESS_TELEPHONE_KEY;
+extern NSString *const JSON_BUSINESS_ADDRESS_KEY;
 extern NSString *const JSON_BUSINESS_WEBSITE_KEY;
 
 extern NSString *const JSON_ACTIVITY_ID_KEY;

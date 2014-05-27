@@ -16,6 +16,6 @@
 
 @property (weak,nonatomic) IBOutlet UITextView *recipeDescription;
 
-- (void)setupWithRecipe:(Recipe*)recipe;
+- (void)setupWithRecipe:(Activity*)activity;
 
 @end

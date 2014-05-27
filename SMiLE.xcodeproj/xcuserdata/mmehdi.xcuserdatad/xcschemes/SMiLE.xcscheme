@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3E626D6E18A3F34B007C5CDB"
-               BuildableName = "Trace It.app"
+               BuildableName = "TrackMyFood!.app"
                BlueprintName = "SMiLE"
                ReferencedContainer = "container:SMiLE.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E626D6E18A3F34B007C5CDB"
-            BuildableName = "Trace It.app"
+            BuildableName = "TrackMyFood!.app"
             BlueprintName = "SMiLE"
             ReferencedContainer = "container:SMiLE.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E626D6E18A3F34B007C5CDB"
-            BuildableName = "Trace It.app"
+            BuildableName = "TrackMyFood!.app"
             BlueprintName = "SMiLE"
             ReferencedContainer = "container:SMiLE.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E626D6E18A3F34B007C5CDB"
-            BuildableName = "Trace It.app"
+            BuildableName = "TrackMyFood!.app"
             BlueprintName = "SMiLE"
             ReferencedContainer = "container:SMiLE.xcodeproj">
          </BuildableReference>

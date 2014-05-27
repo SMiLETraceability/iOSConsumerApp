@@ -22,7 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *farmLocation;
+//@property (weak, nonatomic) IBOutlet UIImageView *farmLocation;
+@property (weak, nonatomic) IBOutlet MKMapView *farmLocation;
 
 - (void)setupWithDictionary:(NSDictionary *)dictionary;
 -(void)setupBusinessCell:(Business*)business;

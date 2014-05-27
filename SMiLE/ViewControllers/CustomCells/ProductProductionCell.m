@@ -29,8 +29,9 @@
     [self setBackgroundColor:[UIColor clearColor]];
 }
 
-- (void)setupCell:(ProductProduction*)production
+- (void)setupCell:(Activity*)activity
 {
+    ProductProduction *production = [[[activity toProductProduction] allObjects] objectAtIndex:0];
     self.mainView.layer.cornerRadius = 10;
     self.mainView.layer.masksToBounds = YES;
     

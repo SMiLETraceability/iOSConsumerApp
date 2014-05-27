@@ -115,18 +115,44 @@
 
 }
 
--(IBAction)openTraceability:(id)sender{
+/*-(IBAction)openTraceability:(id)sender{
     [self performSegueWithIdentifier:@"DetailToTraceabilityView" sender:nil];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"DetailToTraceabilityView"]){
         // ItemOverviewController *itemView = [[ItemOverviewController alloc] init];
-        TraceabilityViewController *traceView = [[TraceabilityViewController alloc] init];
-        traceView = [segue destinationViewController];
-        [traceView setProduct:product];
-        [traceView setBusiness:business];
+        //TraceabilityViewController *traceView = [[TraceabilityViewController alloc] init];
+        //traceView = [segue destinationViewController];
+        //[traceView setProduct:product];
+        //[traceView setBusiness:business];
+        
+        ItemWebViewController *itemView = [[ItemWebViewController alloc] init];
+        itemView = [segue destinationViewController];
+        [itemView setItemID:itemID];
+        
+        NSLog(@" iddidididiididdidididiididdidididiididdidididiid  %@", itemID);
+    }
+}*/
+
+-(IBAction)openTraceability:(id)sender{
+    [self performSegueWithIdentifier:@"ItemDetailToItemWeb" sender:nil];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"ItemDetailToItemWeb"]){
+        // ItemOverviewController *itemView = [[ItemOverviewController alloc] init];
+        //TraceabilityViewController *traceView = [[TraceabilityViewController alloc] init];
+        //traceView = [segue destinationViewController];
+        //[traceView setProduct:product];
+        //[traceView setBusiness:business];
+        
+        ItemWebViewController *itemView = [[ItemWebViewController alloc] init];
+        itemView = [segue destinationViewController];
+        [itemView setItemID:itemID];
     }
 }
+
+
+
 
 /*- (IBAction)shareBtnTapped:(id)sender
 {

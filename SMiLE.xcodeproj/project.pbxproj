@@ -11,7 +11,6 @@
 		3E03B1A2191BC451003384C2 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E03B1A1191BC451003384C2 /* Recipe.m */; };
 		3E03B1A5191BC82A003384C2 /* ProductProduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E03B1A4191BC82A003384C2 /* ProductProduction.m */; };
 		3E03B1A8191BC82A003384C2 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E03B1A7191BC82A003384C2 /* Activity.m */; };
-		3E03B1AB191BCFE0003384C2 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E03B1AA191BCFE0003384C2 /* Business.m */; };
 		3E03B1AD191BE899003384C2 /* BusinessInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E03B1AC191BE899003384C2 /* BusinessInfoCell.xib */; };
 		3E03B1B1191C1E90003384C2 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E03B1AE191C1E90003384C2 /* home_icon.png */; };
 		3E03B1B2191C1E90003384C2 /* nearby_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E03B1AF191C1E90003384C2 /* nearby_icon.png */; };
@@ -21,6 +20,8 @@
 		3E03B1B9191C200E003384C2 /* qr_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E03B1B6191C200E003384C2 /* qr_icon@2x.png */; };
 		3E03B1BC191C23E1003384C2 /* glen_ample_raspberry in Resources */ = {isa = PBXBuildFile; fileRef = 3E03B1BA191C23E1003384C2 /* glen_ample_raspberry */; };
 		3E03B1BD191C23E1003384C2 /* lairig_ghru_cheese in Resources */ = {isa = PBXBuildFile; fileRef = 3E03B1BB191C23E1003384C2 /* lairig_ghru_cheese */; };
+		3E0F8ABE192CF812000DFA87 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F8ABD192CF812000DFA87 /* Business.m */; };
+		3E0F8AC1192D036C000DFA87 /* ItemWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F8AC0192D036C000DFA87 /* ItemWebViewController.m */; };
 		3E38347218D21CF30046B5D3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E38347118D21CF30046B5D3 /* MessageUI.framework */; };
 		3E38347418D21CFD0046B5D3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E38347318D21CFD0046B5D3 /* Security.framework */; };
 		3E38364B18D330E60046B5D3 /* RecipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E38364A18D330E60046B5D3 /* RecipeCell.m */; };
@@ -153,8 +154,6 @@
 		3E03B1A4191BC82A003384C2 /* ProductProduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductProduction.m; sourceTree = "<group>"; };
 		3E03B1A6191BC82A003384C2 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
 		3E03B1A7191BC82A003384C2 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
-		3E03B1A9191BCFE0003384C2 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
-		3E03B1AA191BCFE0003384C2 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
 		3E03B1AC191BE899003384C2 /* BusinessInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessInfoCell.xib; sourceTree = "<group>"; };
 		3E03B1AE191C1E90003384C2 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		3E03B1AF191C1E90003384C2 /* nearby_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nearby_icon.png; sourceTree = "<group>"; };
@@ -164,6 +163,10 @@
 		3E03B1B6191C200E003384C2 /* qr_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr_icon@2x.png"; sourceTree = "<group>"; };
 		3E03B1BA191C23E1003384C2 /* glen_ample_raspberry */ = {isa = PBXFileReference; lastKnownFileType = file; path = glen_ample_raspberry; sourceTree = "<group>"; };
 		3E03B1BB191C23E1003384C2 /* lairig_ghru_cheese */ = {isa = PBXFileReference; lastKnownFileType = file; path = lairig_ghru_cheese; sourceTree = "<group>"; };
+		3E0F8ABC192CF812000DFA87 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
+		3E0F8ABD192CF812000DFA87 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
+		3E0F8ABF192D036C000DFA87 /* ItemWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemWebViewController.h; sourceTree = "<group>"; };
+		3E0F8AC0192D036C000DFA87 /* ItemWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemWebViewController.m; sourceTree = "<group>"; };
 		3E38347118D21CF30046B5D3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3E38347318D21CFD0046B5D3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3E38363D18D231080046B5D3 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
@@ -178,7 +181,7 @@
 		3E38365218D359170046B5D3 /* IngredientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngredientCell.h; sourceTree = "<group>"; };
 		3E38365318D359170046B5D3 /* IngredientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientCell.m; sourceTree = "<group>"; };
 		3E40944A18DC7BB20018CE55 /* MySHKSharers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MySHKSharers.plist; path = SMiLE/MySHKSharers.plist; sourceTree = "<group>"; };
-		3E626D6F18A3F34C007C5CDB /* Trace It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trace It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E626D6F18A3F34C007C5CDB /* TrackMyFood!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TrackMyFood!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E626D7218A3F34C007C5CDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E626D7418A3F34C007C5CDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3E626D7618A3F34C007C5CDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -381,7 +384,7 @@
 		3E626D7018A3F34C007C5CDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E626D6F18A3F34C007C5CDB /* Trace It.app */,
+				3E626D6F18A3F34C007C5CDB /* TrackMyFood!.app */,
 				3E626D9818A3F34C007C5CDB /* SMiLETests.xctest */,
 			);
 			name = Products;
@@ -544,6 +547,8 @@
 				3E813BB8190A90CB000E5658 /* GalleryCollectionViewController.m */,
 				3E88746019100C2600E605B7 /* NearbySearchViewController.h */,
 				3E88746119100C2600E605B7 /* NearbySearchViewController.m */,
+				3E0F8ABF192D036C000DFA87 /* ItemWebViewController.h */,
+				3E0F8AC0192D036C000DFA87 /* ItemWebViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -696,8 +701,8 @@
 				3E03B1A7191BC82A003384C2 /* Activity.m */,
 				3E03B1A3191BC82A003384C2 /* ProductProduction.h */,
 				3E03B1A4191BC82A003384C2 /* ProductProduction.m */,
-				3E03B1A9191BCFE0003384C2 /* Business.h */,
-				3E03B1AA191BCFE0003384C2 /* Business.m */,
+				3E0F8ABC192CF812000DFA87 /* Business.h */,
+				3E0F8ABD192CF812000DFA87 /* Business.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -719,7 +724,7 @@
 			);
 			name = SMiLE;
 			productName = SMiLE;
-			productReference = 3E626D6F18A3F34C007C5CDB /* Trace It.app */;
+			productReference = 3E626D6F18A3F34C007C5CDB /* TrackMyFood!.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3E626D9718A3F34C007C5CDB /* SMiLETests */ = {
@@ -895,6 +900,7 @@
 				3E626DC518A3F81A007C5CDB /* AFHTTPRequestOperation.m in Sources */,
 				3E626DD818A5111D007C5CDB /* Constants.m in Sources */,
 				3E38364B18D330E60046B5D3 /* RecipeCell.m in Sources */,
+				3E0F8AC1192D036C000DFA87 /* ItemWebViewController.m in Sources */,
 				3E7DAC8F18C7B4B200D27634 /* FeedbackViewController.m in Sources */,
 				3E03B1A2191BC451003384C2 /* Recipe.m in Sources */,
 				3E813BB9190A90CB000E5658 /* GalleryCollectionViewController.m in Sources */,
@@ -909,7 +915,7 @@
 				3EF64FF6191BB31C00F9AF6A /* Address.m in Sources */,
 				3E88745D190E9E7700E605B7 /* GalleryCollectionCell.m in Sources */,
 				3E696CE118A8F6A1002E6B50 /* GalleryViewController.m in Sources */,
-				3E03B1AB191BCFE0003384C2 /* Business.m in Sources */,
+				3E0F8ABE192CF812000DFA87 /* Business.m in Sources */,
 				3EA7589718B4ED70009C20DD /* BusinessInfoCell.m in Sources */,
 				3E7C801818B3AFBC0093B42B /* WKPagesCollectionViewCell.m in Sources */,
 				3EF64FE7191BB31B00F9AF6A /* Product.m in Sources */,
@@ -1088,7 +1094,7 @@
 					"$(PROJECT_DIR)/SMiLE/libs/ShareKit/Submodules/evernote-ios-sdk/UnitTests/3rdParty/OCMock",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "Trace It";
+				PRODUCT_NAME = "TrackMyFood!";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv6 arm64 armv7 armv7s";
@@ -1117,7 +1123,7 @@
 					"$(PROJECT_DIR)/SMiLE/libs/ShareKit/Submodules/evernote-ios-sdk/UnitTests/3rdParty/OCMock",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "Trace It";
+				PRODUCT_NAME = "TrackMyFood!";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv6 arm64 armv7 armv7s";

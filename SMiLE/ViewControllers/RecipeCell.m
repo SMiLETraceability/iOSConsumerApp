@@ -31,8 +31,10 @@
     [self setBackgroundColor:[UIColor clearColor]];
 }
 
-- (void)setupWithRecipe:(Recipe*)recipe
+- (void)setupWithRecipe:(Activity*)activity
 {
+    Recipe *recipe = [[[activity toRecipe] allObjects] objectAtIndex:0];
+    
     self.mainView.layer.cornerRadius = 10;
     self.mainView.layer.masksToBounds = YES;
     

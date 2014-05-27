@@ -2,7 +2,7 @@
 //  Business.m
 //  SMiLE
 //
-//  Created by Mujtaba Mehdi on 08/05/2014.
+//  Created by Mujtaba Mehdi on 21/05/2014.
 //  Copyright (c) 2014 Dot Rural. All rights reserved.
 //
 
@@ -13,10 +13,12 @@
 @implementation Business
 
 @dynamic businessDescription;
+@dynamic businessID;
 @dynamic image;
 @dynamic telephone;
 @dynamic title;
-@dynamic businessID;
+@dynamic website;
+@dynamic address;
 @dynamic toProduct;
 
 @end

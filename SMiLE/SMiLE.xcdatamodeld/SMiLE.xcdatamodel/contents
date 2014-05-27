@@ -16,11 +16,13 @@
         <relationship name="toUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="toAddress" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Business" representedClassName="Business" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="businessDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="businessID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="toProduct" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="toBusiness" inverseEntity="Product" syncable="YES"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES">
@@ -86,8 +88,8 @@
     </entity>
     <elements>
         <element name="Activity" positionX="441" positionY="234" width="128" height="148"/>
-        <element name="Address" positionX="-425" positionY="153" width="128" height="103"/>
-        <element name="Business" positionX="493" positionY="-0" width="128" height="133"/>
+        <element name="Address" positionX="-378" positionY="158" width="128" height="103"/>
+        <element name="Business" positionX="603" positionY="-99" width="128" height="163"/>
         <element name="Ingredient" positionX="628" positionY="504" width="128" height="163"/>
         <element name="Item" positionX="-36" positionY="207" width="128" height="88"/>
         <element name="Location" positionX="169" positionY="389" width="128" height="88"/>

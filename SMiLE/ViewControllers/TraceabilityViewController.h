@@ -16,6 +16,9 @@
     Activity *businessInfo;
     NSMutableArray *activitiesArr;
     NSArray *ingredientsArr;
+    
+    NSArray *productionArr;
+    NSArray *recipesArray;
 }
 
 @property(weak,nonatomic) IBOutlet UITableView *myTableView;

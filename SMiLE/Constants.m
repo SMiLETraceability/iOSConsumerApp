@@ -20,6 +20,8 @@ NSString *const API_TOKEN =  @"aba778b08bf5d2376ce2c7bd0be60ba7";
 
 //NSString *const API_BASE_URL = @"http://smile.abdn.ac.uk:8081/smile-server/api-1.0";
 NSString *const API_BASE_URL = @"http://smile.abdn.ac.uk:8080/smile-server/api-1.1";
+NSString *const ITEM_WEB_URL = @"http://smile.abdn.ac.uk/smile/item-web.php?itmid=";
+
 NSString *const API_ITEMS_URL = @"/item";
 //NSString *const EVRYTHING_API_ITEMS_URL = @"/thngs";
 NSString *const API_BUSINESS_URL = @"/business";
@@ -56,7 +58,7 @@ NSString *const JSON_BUSINESS_DESCRIPTION_KEY = @"description";
 NSString *const JSON_BUSINESS_ID_KEY = @"id";
 NSString *const JSON_BUSINESS_IMAGE_KEY = @"photos";
 NSString *const JSON_BUSINESS_TELEPHONE_KEY = @"telephone";
-NSString *const JSON_BUSINESS_WEBSITE_KEY = @"";
+NSString *const JSON_BUSINESS_WEBSITE_KEY = @"websiteUrl";
 NSString *const JSON_BUSINESS_ADDRESS_KEY = @"address";
 
 NSString *const JSON_ACTIVITY_ID_KEY = @"id";

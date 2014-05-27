@@ -2,7 +2,7 @@
 //  Business.h
 //  SMiLE
 //
-//  Created by Mujtaba Mehdi on 08/05/2014.
+//  Created by Mujtaba Mehdi on 21/05/2014.
 //  Copyright (c) 2014 Dot Rural. All rights reserved.
 //
 
@@ -14,10 +14,12 @@
 @interface Business : NSManagedObject
 
 @property (nonatomic, retain) NSString * businessDescription;
+@property (nonatomic, retain) NSString * businessID;
 @property (nonatomic, retain) NSString * image;
 @property (nonatomic, retain) NSString * telephone;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * businessID;
+@property (nonatomic, retain) NSString * website;
+@property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSSet *toProduct;
 @end
 

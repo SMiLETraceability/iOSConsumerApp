@@ -207,6 +207,20 @@ static NSString *initials = @"SMiLE";
         [business setTitle:[businessDict objectForKey:JSON_BUSINESS_TITLE_KEY]];
         [business setBusinessDescription:[businessDict objectForKey:JSON_BUSINESS_DESCRIPTION_KEY]];
         [business setTelephone:[businessDict objectForKey:JSON_BUSINESS_TELEPHONE_KEY]];
+        [business setWebsite:[businessDict objectForKey:JSON_BUSINESS_WEBSITE_KEY]];
+        @try {
+            NSString *address = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",[[businessDict objectForKey:@"address"] objectForKey:@"number"],
+                                 [[businessDict objectForKey:@"address"] objectForKey:@"street"],
+                                 [[businessDict objectForKey:@"address"] objectForKey:@"postcode"],
+                                 [[businessDict objectForKey:@"address"] objectForKey:@"county"],
+                                 [[businessDict objectForKey:@"address"] objectForKey:@"country"]
+                                 ];
+            [business setAddress:address];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"exception %@",[exception description]);
+        }
+
         //[user setApiKey:[[userDict objectForKey:JSON_USER_API_KEY] stringValue]];
         // [user setStatus:[[userDict objectForKey:JSON_USER_STATUS_KEY] stringValue]];
         

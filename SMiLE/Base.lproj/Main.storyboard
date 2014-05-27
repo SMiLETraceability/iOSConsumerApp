@@ -377,6 +377,35 @@
             </objects>
             <point key="canvasLocation" x="671" y="-45"/>
         </scene>
+        <!--Item Web View Controller-->
+        <scene sceneID="WLl-44-484">
+            <objects>
+                <viewController id="aYz-3a-SsN" customClass="ItemWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eVt-Ih-Bpx"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Gb-69-0rR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vqu-1C-U7x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d9l-VO-8P5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QHj-Av-Vvn"/>
+                    <connections>
+                        <outlet property="webView" destination="d9l-VO-8P5" id="yzV-Vv-eL9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q0j-Oc-Qxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1022" y="-2097"/>
+        </scene>
         <!--Scan View Controller-->
         <scene sceneID="V3x-Sm-wg3">
             <objects>
@@ -525,11 +554,11 @@
                                     <color key="titleShadowColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="openTraceability:" destination="MwA-e8-vdE" eventType="touchUpInside" id="v3g-0B-aDz"/>
+                                    <segue destination="aYz-3a-SsN" kind="push" identifier="ItemDetailToItemWeb" id="Yld-Gs-cYU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87f-fz-4Ma">
-                                <rect key="frame" x="20" y="395" width="280" height="30"/>
+                                <rect key="frame" x="20" y="397" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Share">

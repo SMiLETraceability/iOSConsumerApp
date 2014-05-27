@@ -55,22 +55,47 @@
     [self.titleLabel1 setText:@"Telephone: "];
     [self.titleLabel1Value setText:business.telephone];
     [self.titleLabel2 setText:@"Website: "];
-    if([business.title isEqualToString:@"Berry Scrumptious"])
-        [self.titleLabel2Value setText:@"http://wwww.berryscrumptious.co.uk"];
-    else
-        [self.titleLabel2Value setText:@"http://www.cambusomay.com"];
+    [self.titleLabel2Value setText:business.website];
+//    if([business.title isEqualToString:@"Berry Scrumptious"])
+    // [self.titleLabel2Value setText:@"http://wwww.berryscrumptious.co.uk"];
+  //  else
+    //    [self.titleLabel2Value setText:@"http://www.cambusomay.com"];
     
     [self.descriptionLabel setText:business.businessDescription];
     
    // [self.mainImage setImage:[UIImage imageNamed:@"strawberry_farm"]];
     [self getImage:business];
     
+    //NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://smile.abdn.ac.uk/smile/ext/img/farm-location.png"]];
+    //[self.farmLocation setImage:[UIImage imageWithData:imageData]];
     
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://smile.abdn.ac.uk/smile/ext/img/farm-location.png"]];
-    [self.farmLocation setImage:[UIImage imageWithData:imageData]];
+    /*CLLocationCoordinate2D location = [self getLocationFromAddressString:business.address];
+    MKCoordinateRegion region =  MKCoordinateRegionMake(location, MKCoordinateSpanMake(-1, -1));
+    [farmLocation setRegion:region];*/
 }
 
-
+-(CLLocationCoordinate2D) getLocationFromAddressString:(NSString*) addressStr {
+         
+         double latitude = 0, longitude = 0;
+         NSString *esc_addr =  [addressStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+         NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
+         NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
+         if (result) {
+             NSScanner *scanner = [NSScanner scannerWithString:result];
+             if ([scanner scanUpToString:@"\"lat\" :" intoString:nil] && [scanner scanString:@"\"lat\" :" intoString:nil]) {
+                 [scanner scanDouble:&latitude];
+                 if ([scanner scanUpToString:@"\"lng\" :" intoString:nil] && [scanner scanString:@"\"lng\" :" intoString:nil]) {
+                     [scanner scanDouble:&longitude];
+                 }
+             }
+         }
+         CLLocationCoordinate2D center;
+         center.latitude = latitude;
+         center.longitude = longitude;
+         return center;
+         
+     }
+     
 -(void)getImage:(Business*)business{
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:business.image]];
     [self.mainImage setImage:[UIImage imageWithData:imageData]];

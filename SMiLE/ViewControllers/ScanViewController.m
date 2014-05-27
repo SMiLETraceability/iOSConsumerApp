@@ -237,7 +237,10 @@
         ItemViewController *itemView = [[ItemViewController alloc] init];
         itemView = [segue destinationViewController];
         [itemView setItemID:itemID];
+        //[self.navigationController popViewControllerAnimated:NO];
+        
     }
 }
+
 @end
 
